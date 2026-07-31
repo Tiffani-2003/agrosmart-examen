@@ -121,7 +121,8 @@ Hibernate:
 **2.3** ¿Por qué usaste `BigDecimal` y no `double` para `precio_usd`? Relaciónalo con el
 tipo que generó Hibernate en PostgreSQL.
 
->
+><img width="1200" height="756" alt="dar" src="https://github.com/user-attachments/assets/5272702d-ec07-493d-9d62-439c7ddcc808" />
+
 
 **2.4** ¿Cómo hiciste idempotente tu siembra y qué pasaría en el segundo arranque si no
 lo fuera? (piensa en la restricción `unique` de `nombre_producto`)
