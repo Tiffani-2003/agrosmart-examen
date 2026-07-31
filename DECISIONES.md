@@ -58,9 +58,48 @@ Se eligió Docker para garantizar portabilidad y aislamiento del entorno, permit
 
 >El nombre exacto de la tabla es tbl_productos_base_00. Surgió de combinar la estructura base requerida (tbl_productos_base_) con los dos dígitos correspondientes, tal como se define en la anotación @Table(name = "tbl_productos_base_00") dentro de la clase ProductoEntity.java.
 
+Breve código:
+package ec.edu.espe.agrosmart.entity;
 
-![Evidencia ProductoEntity](https://github.com/user-attachments/assets/52d3c397-d6fb-4ca6-b476-0e90f25992ac)
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "tbl_productos_base_00")
+public class ProductoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_producto")
+    private Long idProducto;
+
+    @Column(name = "nombre_producto",
+            nullable = false,
+            unique = true,
+            length = 120)
+    private String nombreProducto;
+
+    @Column(name = "precio_usd",
+            precision = 10,
+            scale = 2)
+    private BigDecimal precioUsd;
+
+    @Column(name = "stock_kg",
+            nullable = false)
+    private Integer stockKg;
+
+    @Column(name = "categoria",
+            length = 40)
+    private String categoria;
+
+    @Column(name = "correos_notificacion",
+            length = 500)
+    private String correosNotificacion;
+
+    // Constructor vacío requerido por Hibernate
+    public ProductoEntity() {
+    }
 
 **2.2** Pega la salida de `psql -d agrosmart_db -c "\d tbl_productos_base_NN"` y
 señala dónde se ve la restricción `unique` y el `length` de 120.
