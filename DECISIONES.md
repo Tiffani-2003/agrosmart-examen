@@ -205,7 +205,14 @@ Si se elimina .subscribeOn(Schedulers.boundedElastic()), la consulta bloqueante 
 **4.3** ¿Por qué `Mono.fromCallable(...)` y no `Mono.just(ec.edu.espe.agrosmart.repository.findAll())`?
 (pista: cuándo se ejecuta cada uno)
 
->
+>4.3 ¿Por qué Mono.fromCallable(...) y no Mono.just(ec.edu.espe.agrosmart.repository.findAll())? (pista: cuándo se ejecuta cada uno)
+
+Porque Mono.just() evalúa el parámetro de forma eager (ansiosa) al momento de construir el flujo, ejecutando la consulta bloqueante de inmediato incluso antes de que alguien se suscriba. En cambio, Mono.fromCallable() (o Flux.defer) es lazy (perezoso), asegurando que la consulta a la base de datos se ejecute únicamente en el momento exacto en que se realiza la suscripción.
+
+public Mono<List<Producto>> obtenerProductos() {
+    return Mono.fromCallable(() -> productoRepository.findAll())
+            .subscribeOn(Schedulers.boundedElastic());
+}
 
 **4.4** En **tu** código, ¿dónde usaste `defaultIfEmpty` y dónde `switchIfEmpty`, y por
 qué no son intercambiables en esos dos lugares?
