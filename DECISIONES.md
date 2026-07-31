@@ -193,7 +193,14 @@ public Flux<Producto> obtenerProductosComercializables() {
 `.subscribeOn(Schedulers.boundedElastic())` de ese método? Si lo probaste, indica qué
 hilo aparecía en el log antes y después.
 
->
+>El método implementa el aislamiento de hilos para evitar bloquear el ciclo de eventos reactivo:
+
+public Flux<Producto> obtenerProductosComercializables() {
+    return Flux.defer(() -> Flux.fromIterable(productoRepository.findAll()))
+            .subscribeOn(Schedulers.boundedElastic());
+}
+
+Si se elimina .subscribeOn(Schedulers.boundedElastic()), la consulta bloqueante de JPA ejecutará su carga en el hilo principal del Event Loop de Netty (reactor-http-nio-*), congelando el servidor. Con el operador, la tarea se desplaza de forma segura al pool de hilos boundedElastic-*.
 
 **4.3** ¿Por qué `Mono.fromCallable(...)` y no `Mono.just(ec.edu.espe.agrosmart.repository.findAll())`?
 (pista: cuándo se ejecuta cada uno)
