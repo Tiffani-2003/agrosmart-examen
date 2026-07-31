@@ -148,6 +148,7 @@ lo fuera? (piensa en la restricción `unique` de `nombre_producto`)
 
 **3.2** Escribe el código exacto de **tus dos** copias defensivas e indica en qué línea
 está cada una.
+
 Producto.java
 Define el modelo inmutable principal del producto.
 
