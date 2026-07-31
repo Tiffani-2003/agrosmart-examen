@@ -237,7 +237,7 @@ flux.doOnNext(producto -> {
     log.info("Procesando: {}", producto.nombre());
 })
 
----
+
 
 ## Fase 5 — Módulo de IA con LangChain4j
 
@@ -245,7 +245,8 @@ flux.doOnNext(producto -> {
 
 Esta interfaz utiliza la anotación @AiService para que LangChain4j gestione la implementación de manera automática como un bean de Spring. Mediante @UserMessage se define la plantilla del prompt con variables dinámicas ({{producto}} y {{audiencia}}), las cuales se inyectan en tiempo de ejecución utilizando la anotación @V para generar contenido publicitario acotado al contexto del dominio agrícola.
 
-https://i.ibb.co/LXDvTwLj/nb.png
+```
+<img width="907" height="372" alt="14x" src="https://github.com/user-attachments/assets/d634a4e8-d061-4f47-a624-8f060c734c50" />
 
 
 
