@@ -12,7 +12,7 @@ public class ProductoMapper {
                 entity.getPrecioUsd(),
                 entity.getStockKg(),
                 entity.getCategoria(),
-                entity.getCorreosNotificacion()
+                java.util.Collections.singletonList(entity.getCorreosNotificacion())
         );
     }
 
@@ -23,7 +23,7 @@ public class ProductoMapper {
                 producto.precioUsd(),
                 producto.stockKg(),
                 producto.categoria(),
-                producto.correosNotificacion()
+                producto.correosNotificacion() != null && !producto.correosNotificacion().isEmpty() ? producto.correosNotificacion().get(0) : null
         );
     }
 }

@@ -11,6 +11,7 @@ import reactor.core.scheduler.Schedulers;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.Collections;
 
 @Service
 public class ProductoService {
@@ -24,7 +25,7 @@ public class ProductoService {
             BigDecimal.ZERO,
             0,
             "N/A",
-            "admin@agrosmart.com"
+            Collections.singletonList("admin@agrosmart.com")
     );
 
     public ProductoService(ProductoRepository repository, AgroSmartAIService aiService) {
