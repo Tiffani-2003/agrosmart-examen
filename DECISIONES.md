@@ -217,7 +217,13 @@ public Mono<List<Producto>> obtenerProductos() {
 **4.4** En **tu** código, ¿dónde usaste `defaultIfEmpty` y dónde `switchIfEmpty`, y por
 qué no son intercambiables en esos dos lugares?
 
->
+>Se usó defaultIfEmpty para emitir un valor estático/por defecto alternativo cuando el flujo completa vacío, y switchIfEmpty cuando se requiere desencadenar otro flujo reactivo completo (como otra operación asíncrona o una excepción reactiva como Mono.error()). No son intercambiables porque el primero espera un objeto constante y el segundo un Publisher alternativo.
+
+public Mono<Producto> buscarPorId(String id) {
+    return productoRepository.findById(id)
+            .switchIfEmpty(Mono.error(new ProductoNoEncontradoException("Producto no encontrado")))
+            .defaultIfEmpty(new Producto("0", "DEFAULT", BigDecimal.ZERO, 0, "GENERAL", List.of()));
+}
 
 **4.5** ¿Por qué `doOnNext` no sirve para transformar el elemento, si aparentemente
 "recibe" el producto?
