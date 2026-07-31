@@ -245,7 +245,7 @@ flux.doOnNext(producto -> {
 
 Esta interfaz utiliza la anotación @AiService para que LangChain4j gestione la implementación de manera automática como un bean de Spring. Mediante @UserMessage se define la plantilla del prompt con variables dinámicas ({{producto}} y {{audiencia}}), las cuales se inyectan en tiempo de ejecución utilizando la anotación @V para generar contenido publicitario acotado al contexto del dominio agrícola.
 
-<img width="907" height="372" alt="14x" src="https://github.com/user-attachments/assets/74712519-a8ce-4436-ae98-1ba58d329d67" />
+<img width="907" height="372" alt="14x" src="https://github.com/user-attachments/assets/0d199375-9e44-429f-be9e-c1a9320d8ad4" />
 
 
 **5.2** ¿Qué hace `@V("producto")` y qué pasaría si lo quitaras dejando solo el
