@@ -167,7 +167,9 @@ Define el modelo inmutable para los filtros de búsqueda.
 **3.3** ¿Por qué la copia defensiva **solo en el getter** no sería suficiente? Describe
 el ataque concreto que quedaría abierto sobre **tu** clase.
 
->
+>Si el objeto manejara tipos o colecciones mutables, un bloque externo de código podría pasar una referencia mutable al instanciar el objeto y modificar sus valores desde el exterior, vulnerando la inmutabilidad de forma indirecta. 
+
+No obstante, en este diseño se emplean `records` de Java, los cuales aseguran campos intrínsecamente inmutables (`String`, `BigDecimal`, `Long`), previniendo este tipo de riesgos de manera nativa.
 
 **3.4** ¿Cómo implementaste `A_MAYUSCULAS` para no mutar el `Producto` recibido?
 
