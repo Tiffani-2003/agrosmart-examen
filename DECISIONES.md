@@ -106,8 +106,16 @@ public class ProductoEntity {
 **2.2** Pega la salida de `psql -d agrosmart_db -c "\d tbl_productos_base_NN"` y
 señala dónde se ve la restricción `unique` y el `length` de 120.
 
-```
+```Salida de la consola con la ejecución de Hibernate y las inserciones:
 
+Breve código: 
+Hibernate:
+    insert 
+    into
+        tbl_productos_base_00
+        (categoria, correos_notificacion, nombre_producto, precio_usd, stock_kg)
+    values
+        (?, ?, ?, ?, ?)
 ```
 
 **2.3** ¿Por qué usaste `BigDecimal` y no `double` para `precio_usd`? Relaciónalo con el
