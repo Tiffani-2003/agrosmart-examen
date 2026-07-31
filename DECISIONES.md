@@ -173,7 +173,7 @@ No obstante, en este diseño se emplean `records` de Java, los cuales aseguran c
 
 **3.4** ¿Cómo implementaste `A_MAYUSCULAS` para no mutar el `Producto` recibido?
 
-Mediante programación funcional e instanciando un nuevo objeto Producto en lugar de modificar los atributos del objeto entrante, utilizando métodos purificados:
+>Mediante programación funcional e instanciando un nuevo objeto Producto en lugar de modificar los atributos del objeto entrante, utilizando métodos purificados:
 return new Producto(p.getId(), p.getNombre().toUpperCase(), p.getPrecio(), p.getStock(), p.getCategoria(), p.getCorreosNotificacion());
 
 ## Fase 4 — Servicio reactivo y aislamiento del bloqueo
