@@ -245,7 +245,7 @@ flux.doOnNext(producto -> {
 
 Esta interfaz utiliza la anotación @AiService para que LangChain4j gestione la implementación de manera automática como un bean de Spring. Mediante @UserMessage se define la plantilla del prompt con variables dinámicas ({{producto}} y {{audiencia}}), las cuales se inyectan en tiempo de ejecución utilizando la anotación @V para generar contenido publicitario acotado al contexto del dominio agrícola.
 
-<img width="883" height="361" alt="nb" src="https://github.com/user-attachments/assets/aa403f08-3260-436c-a4da-35e707e48e27" />
+https://i.ibb.co/LXDvTwLj/nb.png
 
 
 
