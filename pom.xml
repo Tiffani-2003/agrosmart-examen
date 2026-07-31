@@ -22,9 +22,10 @@
     </properties>
 
     <dependencies>
+        <!-- Dependencia para WebFlux y programación reactiva (Mono, Flux, Schedulers) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>

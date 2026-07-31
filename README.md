@@ -284,7 +284,7 @@ src/main/java/ec/edu/espe/agrosmart/
 ├── AgroSmartApplication.java
 ├── ec.edu.espe.agrosmart.controller/
 │   └── AgroSmartController.java      # WebFlux — Mono/Flux
-├── ec.edu.espe.agrosmart.service/
+├── ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service/
 │   ├── ProductoService.java          # flujo reactivo + puente boundedElastic
 │   └── AgroSmartAIService.java       # interfaz @AiService de LangChain4j
 ├── ec.edu.espe.agrosmart.repository/
@@ -296,7 +296,7 @@ src/main/java/ec/edu/espe/agrosmart/
 │   └── ProductoFilters.java          # Predicate + Consumer
 ├── ec.edu.espe.agrosmart.mapper/
 │   └── ProductoMapper.java           # ProductoEntity → Producto
-└── ec.edu.espe.agrosmart.exception/
+└── ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.exception/
     └── ProductoNoEncontradoException.java
 ```
 
@@ -310,7 +310,7 @@ src/main/java/ec/edu/espe/agrosmart/
 |-------------|-----------|
 | ORM **JPA/Hibernate** vía `spring-boot-starter-data-jpa` | SQL nativo, `JdbcTemplate`, `@Query(nativeQuery = true)` |
 | `spring-boot-starter-webflux` (servidor Netty) | `spring-boot-starter-web` / `spring-boot-starter-webmvc` (Tomcat/MVC) |
-| `Mono`/`Flux` en toda firma pública de ec.edu.espe.agrosmart.service y ec.edu.espe.agrosmart.controller | `block()`, `blockFirst()`, `blockLast()`, `toStream()` |
+| `Mono`/`Flux` en toda firma pública de ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service y ec.edu.espe.agrosmart.controller | `block()`, `blockFirst()`, `blockLast()`, `toStream()` |
 | `Schedulers.boundedElastic()` para JPA y para la IA | Llamar al repositorio o a la IA directamente en el event loop |
 | PostgreSQL con `ddl-auto=update` | Crear la tabla a mano con SQL |
 | JUnit 5 + `reactor-test` | `System.out.println` como sustituto de aserciones |
@@ -744,7 +744,7 @@ public Mono<String> generarPublicidad(String producto, String audiencia) {
 > **Commit obligatorio:** `feat: integra langchain4j para publicidad de productos`
 
 **✅ Checklist de la fase**
-- [ ] Interfaz anotada con `@AiService` (import `dev.langchain4j.ec.edu.espe.agrosmart.service.spring.AiService`)
+- [ ] Interfaz anotada con `@AiService` (import `dev.langchain4j.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service.spring.AiService`)
 - [ ] Prompt con `@UserMessage` y **ambas** variables mapeadas con `@V`
 - [ ] Configuración del modelo en `application-prod.properties` (**sin `@Bean`**)
 - [ ] Llamada aislada en `boundedElastic` con `timeout` y `onErrorResume`
@@ -841,10 +841,10 @@ void obtenerProductosComercializables_conTresValidosYDosInvalidos_debeEmitirSolo
     // Arrange
     ProductoRepository repo = Mockito.mock(ProductoRepository.class);
     Mockito.when(repo.findAll()).thenReturn(datosDePrueba());   // 3 válidos + 2 inválidos
-    ProductoService ec.edu.espe.agrosmart.service = new ProductoService(repo, null);
+    ProductoService ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service = new ProductoService(repo, null);
 
     // Act
-    Flux<Producto> flujo = ec.edu.espe.agrosmart.service.obtenerProductosComercializables();
+    Flux<Producto> flujo = ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service.obtenerProductosComercializables();
 
     // Assert
     StepVerifier.create(flujo)
@@ -868,10 +868,10 @@ void generarPublicidad_cuandoElProveedorFalla_debeEmitirMensajeDeRespaldo() {
     AgroSmartAIService ia = Mockito.mock(AgroSmartAIService.class);
     Mockito.when(ia.generarPublicidad(any(), any()))
            .thenThrow(new RuntimeException("429 Too Many Requests"));
-    PublicidadService ec.edu.espe.agrosmart.service = new PublicidadService(ia);
+    PublicidadService ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service = new PublicidadService(ia);
 
     // Act & Assert
-    StepVerifier.create(ec.edu.espe.agrosmart.service.generarPublicidad("Cacao", "exportadores"))
+    StepVerifier.create(ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service.generarPublicidad("Cacao", "exportadores"))
             .expectNextMatches(texto -> texto.contains("no disponible"))
             .verifyComplete();
 }
@@ -1213,7 +1213,7 @@ puntos si lo resuelves**: tienes hasta el día siguiente.
 | `duplicate key value violates unique constraint` | La siembra corre en cada arranque | Envuélvela en `if (ec.edu.espe.agrosmart.repository.count() == 0) { ... }` |
 | `Port 81XX is already in use` | Otra instancia sigue viva | Mátala: `lsof -ti:81XX \| xargs kill -9` (macOS/Linux) |
 | `No qualifying bean of type ...ChatModel` | Falta `langchain4j-open-ai-spring-boot-starter` o las properties | Revisa que estén **ambos** starters y las líneas `langchain4j.open-ai.chat-model.*` |
-| `cannot find symbol: AiService` | Import equivocado | Es `dev.langchain4j.ec.edu.espe.agrosmart.service.spring.AiService`, no el de `dev.langchain4j.ec.edu.espe.agrosmart.service` |
+| `cannot find symbol: AiService` | Import equivocado | Es `dev.langchain4j.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service.spring.AiService`, no el de `dev.langchain4j.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.service` |
 | `Cannot connect to the Docker daemon` | Docker Desktop apagado | Ábrelo y espera a que diga *running*, o pásate a la Opción B (PostgreSQL local) |
 | Docker Compose no levanta y la app falla | `compose.yaml` mal ubicado | Debe estar en la **raíz** del proyecto, junto a `pom.xml`/`build.gradle` |
 | Las pruebas fallan por conexión a PostgreSQL | No mockeaste el repositorio | Las pruebas **no deben** tocar la base: usa `Mockito.mock(ProductoRepository.class)` |
