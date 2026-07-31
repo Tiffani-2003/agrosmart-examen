@@ -35,17 +35,20 @@ spring.profiles.active=prod
 
 ```2026-07-31T15:43:09.805-05:00  INFO 19252 --- [agrosmart] [           main] e.e.espe.agrosmart.AgrosmartApplication  : The following 1 profile is active: "prod"
 
+
 ```2026-07-31T15:43:17.648-05:00  INFO 19252 --- [agrosmart] [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8100
 
 **1.3** ¿Qué habría pasado si dejabas `ddl-auto=create-drop` en lugar de `update`?
 Responde pensando en tus datos sembrados.
 
->
+>Con create-drop, Hibernate habría borrado y recreado la tabla tbl_productos_base_00 cada vez que se reinicie la aplicación. Esto habría provocado que los 5 productos inyectados por el DataLoader (3 válidos y 2 inválidos) se pierdan constantemente en cada arranque, eliminando cualquier persistencia o modificación en caliente realizada sobre la base de datos.
 
 **1.4** ¿Levantaste PostgreSQL con `compose.yaml` (Opción A) o con una instalación local
 (Opción B)? ¿Qué ventaja tiene la que elegiste?
 
->
+>Opción A (compose.yaml / Docker).
+
+Se eligió Docker para garantizar portabilidad y aislamiento del entorno, permitiendo levantar el motor de base de datos (agrosmart-postgres) de forma limpia y estandarizada con un solo comando, sin depender de instalaciones locales del sistema operativo.
 
 ---
 
