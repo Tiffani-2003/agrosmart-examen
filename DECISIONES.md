@@ -105,8 +105,7 @@ public class ProductoEntity {
 
 **2.2** Pega la salida de `psql -d agrosmart_db -c "\d tbl_productos_base_NN"` y
 señala dónde se ve la restricción `unique` y el `length` de 120.
-
-Salida de la consola con la ejecución de Hibernate y las inserciones:
+``` Salida de la consola con la ejecución de Hibernate y las inserciones:
 
 Breve código: 
 Hibernate:
