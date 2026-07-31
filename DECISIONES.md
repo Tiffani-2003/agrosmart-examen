@@ -121,6 +121,8 @@ Hibernate:
 **2.3** ¿Por qué usaste `BigDecimal` y no `double` para `precio_usd`? Relaciónalo con el
 tipo que generó Hibernate en PostgreSQL.
 
+Se usó `BigDecimal` para evitar errores de precisión decimal típicos de los tipos flotantes. Esto se relaciona con Hibernate porque al definirlo así, se genera en PostgreSQL el tipo exacto `numeric(10,2)` que se visualiza en la estructura de la base de datos.
+
 ><img width="1200" height="756" alt="dar" src="https://github.com/user-attachments/assets/5272702d-ec07-493d-9d62-439c7ddcc808" />
 
 
