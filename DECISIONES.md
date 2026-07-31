@@ -150,6 +150,10 @@ lo fuera? (piensa en la restricción `unique` de `nombre_producto`)
 está cada una.
 
 ```java
+El modelo de dominio utiliza `records` de Java, los cuales garantizan la inmutabilidad por defecto a nivel de lenguaje desde la declaración de sus campos:
+
+<img width="1290" height="439" alt="12x" src="https://github.com/user-attachments/assets/47375d04-521f-413d-b262-fc77fa64832e" />
+
 
 ```
 
