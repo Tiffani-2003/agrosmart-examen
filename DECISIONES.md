@@ -228,7 +228,14 @@ public Mono<Producto> buscarPorId(String id) {
 **4.5** ¿Por qué `doOnNext` no sirve para transformar el elemento, si aparentemente
 "recibe" el producto?
 
->
+>// CORRECTO: Usar .map() para transformar
+flux.map(producto -> transformar(producto))
+
+// INCORRECTO: doOnNext() solo permite efectos secundarios (logs, auditoría)
+flux.doOnNext(producto -> {
+    // No retorna un nuevo valor modificado al flujo
+    log.info("Procesando: {}", producto.nombre());
+})
 
 ---
 
