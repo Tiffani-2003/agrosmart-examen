@@ -129,7 +129,10 @@ Se usó `BigDecimal` para evitar errores de precisión decimal típicos de los t
 **2.4** ¿Cómo hiciste idempotente tu siembra y qué pasaría en el segundo arranque si no
 lo fuera? (piensa en la restricción `unique` de `nombre_producto`)
 
->
+>La siembra se hizo idempotente validando la existencia de registros previos mediante la condición `if (repository.count() == 0)` dentro del `DataLoader` (como se observa en la imagen). Si no contara con esta validación, al realizar un segundo arranque el sistema intentaría reinsertar los mismos datos y la base de datos rechazaría la operación lanzando una excepción por violación de la restricción `UNIQUE` en el campo `nombre_producto`.
+
+<img width="743" height="543" alt="cx" src="https://github.com/user-attachments/assets/2d1f7f4e-84b6-4459-890a-3816c9e53b54" />
+
 
 ---
 
