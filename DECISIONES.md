@@ -65,7 +65,6 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-```java
 @Entity
 @Table(name = "tbl_productos_base_00")
 public class ProductoEntity {
@@ -107,7 +106,7 @@ public class ProductoEntity {
 señala dónde se ve la restricción `unique` y el `length` de 120.
 
 **2.2** Salida de la consola con la ejecución de Hibernate y las inserciones:
-Breve código:
+``` Breve código:
 ```text
 Hibernate:
     insert 
