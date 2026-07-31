@@ -253,7 +253,7 @@ Esta interfaz utiliza la anotación @AiService para que LangChain4j gestione la 
 **5.2** ¿Qué hace `@V("producto")` y qué pasaría si lo quitaras dejando solo el
 parámetro?
 
->
+>La anotación `@V("producto")` enlaza el valor del parámetro Java con la variable de plantilla `{{producto}}` definida en el prompt de la anotación `@UserMessage`. Si se quita, LangChain4j no sabría a qué variable del texto mapear el argumento y lanzaría un error en tiempo de ejecución por parámetro de plantilla no resuelto.
 
 **5.3** ¿En qué archivo y con qué líneas configuraste el modelo? ¿Por qué **no** hizo
 falta declarar un `@Bean`?
