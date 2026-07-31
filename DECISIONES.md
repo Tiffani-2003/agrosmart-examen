@@ -17,10 +17,10 @@
 
 ## Datos
 
-- **Nombre:**
-- **Cédula:**
-- **NN (dos últimos dígitos):**
-- **Categoría asignada (según el último dígito):**
+- **Nombre: Tiffani Natahalia Torres Diaz**
+- **Cédula: 1600952400**
+- **NN (dos últimos dígitos): 00**
+- **Categoría asignada (según el último dígito): exportadores europeos**
 
 ---
 
@@ -114,7 +114,7 @@ hilo aparecía en el log antes y después.
 
 >
 
-**4.3** ¿Por qué `Mono.fromCallable(...)` y no `Mono.just(repository.findAll())`?
+**4.3** ¿Por qué `Mono.fromCallable(...)` y no `Mono.just(ec.edu.espe.agrosmart.repository.findAll())`?
 (pista: cuándo se ejecuta cada uno)
 
 >

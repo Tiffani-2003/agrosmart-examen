@@ -282,21 +282,21 @@ Una **sola aplicación** Spring Boot sobre **Netty (WebFlux)**, con persistencia
 ```
 src/main/java/ec/edu/espe/agrosmart/
 ├── AgroSmartApplication.java
-├── controller/
+├── ec.edu.espe.agrosmart.controller/
 │   └── AgroSmartController.java      # WebFlux — Mono/Flux
-├── service/
+├── ec.edu.espe.agrosmart.service/
 │   ├── ProductoService.java          # flujo reactivo + puente boundedElastic
 │   └── AgroSmartAIService.java       # interfaz @AiService de LangChain4j
-├── repository/
+├── ec.edu.espe.agrosmart.repository/
 │   └── ProductoRepository.java       # JpaRepository — bloqueante
-├── entity/
+├── ec.edu.espe.agrosmart.entity/
 │   └── ProductoEntity.java           # @Entity mapeada por Hibernate
-├── domain/
+├── ec.edu.espe.agrosmart.domain/
 │   ├── Producto.java                 # modelo 100 % INMUTABLE
 │   └── ProductoFilters.java          # Predicate + Consumer
-├── mapper/
+├── ec.edu.espe.agrosmart.mapper/
 │   └── ProductoMapper.java           # ProductoEntity → Producto
-└── exception/
+└── ec.edu.espe.agrosmart.exception/
     └── ProductoNoEncontradoException.java
 ```
 
@@ -310,7 +310,7 @@ src/main/java/ec/edu/espe/agrosmart/
 |-------------|-----------|
 | ORM **JPA/Hibernate** vía `spring-boot-starter-data-jpa` | SQL nativo, `JdbcTemplate`, `@Query(nativeQuery = true)` |
 | `spring-boot-starter-webflux` (servidor Netty) | `spring-boot-starter-web` / `spring-boot-starter-webmvc` (Tomcat/MVC) |
-| `Mono`/`Flux` en toda firma pública de service y controller | `block()`, `blockFirst()`, `blockLast()`, `toStream()` |
+| `Mono`/`Flux` en toda firma pública de ec.edu.espe.agrosmart.service y ec.edu.espe.agrosmart.controller | `block()`, `blockFirst()`, `blockLast()`, `toStream()` |
 | `Schedulers.boundedElastic()` para JPA y para la IA | Llamar al repositorio o a la IA directamente en el event loop |
 | PostgreSQL con `ddl-auto=update` | Crear la tabla a mano con SQL |
 | JUnit 5 + `reactor-test` | `System.out.println` como sustituto de aserciones |
@@ -331,7 +331,7 @@ src/main/java/ec/edu/espe/agrosmart/
 | Fase | Contenido | Rama | Tiempo | Criterio de rúbrica |
 |:---:|-----------|------|:---:|:---:|
 | 0 | Identidad y arranque | `main` | 10 min | C8 |
-| 1 | Configuración y perfiles | `feature/config-perfiles` | 25 min | C1 |
+| 1 | Configuración y perfiles | `feature/ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.config-perfiles` | 25 min | C1 |
 | 2 | Persistencia con JPA/Hibernate | `feature/persistencia-jpa` | 30 min | C2 |
 | 3 | Modelo inmutable y lógica funcional | `feature/modelo-inmutable` | 25 min | C3 |
 | 4 | Servicio reactivo y aislamiento del bloqueo | `feature/servicio-reactivo` | 40 min | C4 |
@@ -397,7 +397,7 @@ git push -u origin main
 ---
 
 ### Fase 1 — Configuración y perfiles (25 min)
-**Rama:** `feature/config-perfiles`
+**Rama:** `feature/ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.ec.edu.espe.agrosmart.config-perfiles`
 
 **1.1 — Levanta PostgreSQL.** Elige **una** de las dos opciones:
 
@@ -536,7 +536,7 @@ public class ProductoEntity {
 **2.3 — Siembra de datos.** Con un `CommandLineRunner` (o `@PostConstruct`), inserta al
 arrancar tus **3 productos válidos** y los **2 inválidos**
 (`precio_usd = 0` y correos vacíos), todos de tu categoría. Hazlo **idempotente**
-(`if (repository.count() == 0)`) para no duplicar en cada arranque.
+(`if (ec.edu.espe.agrosmart.repository.count() == 0)`) para no duplicar en cada arranque.
 
 **2.4 — Evidencia.** Captura desde `psql`:
 
@@ -605,7 +605,7 @@ entidad del ORM al modelo inmutable, transformando la cadena `correos_notificaci
 - [ ] Copia defensiva **en constructor y en getter**
 - [ ] `Predicate`, `Consumer` y `Function` definidos como lambdas
 - [ ] `A_MAYUSCULAS` devuelve una instancia nueva
-- [ ] El mapper convierte correctamente la cadena vacía en lista vacía
+- [ ] El ec.edu.espe.agrosmart.mapper convierte correctamente la cadena vacía en lista vacía
 
 ---
 
@@ -634,7 +634,7 @@ Debe encadenar, **como mínimo**:
 ```java
 public Flux<Producto> obtenerProductosComercializables() {
     // fromCallable difiere la consulta: nada se ejecuta hasta que alguien se suscriba
-    return Mono.fromCallable(repository::findAll)
+    return Mono.fromCallable(ec.edu.espe.agrosmart.repository::findAll)
             // boundedElastic: JPA/Hibernate bloquea el hilo. Si esto corriera en el
             // event loop de Netty, un solo hilo bloqueado degradaría TODAS las peticiones
             .subscribeOn(Schedulers.boundedElastic())
@@ -656,7 +656,7 @@ public Flux<Producto> obtenerProductosComercializables() {
 
 ```java
 public Mono<Producto> buscarPorId(Long id) {
-    return Mono.fromCallable(() -> repository.findById(id))
+    return Mono.fromCallable(() -> ec.edu.espe.agrosmart.repository.findById(id))
             .subscribeOn(Schedulers.boundedElastic())
             .flatMap(Mono::justOrEmpty)          // Optional vacío → Mono vacío
             .map(ProductoMapper::toDominio)
@@ -744,7 +744,7 @@ public Mono<String> generarPublicidad(String producto, String audiencia) {
 > **Commit obligatorio:** `feat: integra langchain4j para publicidad de productos`
 
 **✅ Checklist de la fase**
-- [ ] Interfaz anotada con `@AiService` (import `dev.langchain4j.service.spring.AiService`)
+- [ ] Interfaz anotada con `@AiService` (import `dev.langchain4j.ec.edu.espe.agrosmart.service.spring.AiService`)
 - [ ] Prompt con `@UserMessage` y **ambas** variables mapeadas con `@V`
 - [ ] Configuración del modelo en `application-prod.properties` (**sin `@Bean`**)
 - [ ] Llamada aislada en `boundedElastic` con `timeout` y `onErrorResume`
@@ -841,10 +841,10 @@ void obtenerProductosComercializables_conTresValidosYDosInvalidos_debeEmitirSolo
     // Arrange
     ProductoRepository repo = Mockito.mock(ProductoRepository.class);
     Mockito.when(repo.findAll()).thenReturn(datosDePrueba());   // 3 válidos + 2 inválidos
-    ProductoService service = new ProductoService(repo, null);
+    ProductoService ec.edu.espe.agrosmart.service = new ProductoService(repo, null);
 
     // Act
-    Flux<Producto> flujo = service.obtenerProductosComercializables();
+    Flux<Producto> flujo = ec.edu.espe.agrosmart.service.obtenerProductosComercializables();
 
     // Assert
     StepVerifier.create(flujo)
@@ -868,10 +868,10 @@ void generarPublicidad_cuandoElProveedorFalla_debeEmitirMensajeDeRespaldo() {
     AgroSmartAIService ia = Mockito.mock(AgroSmartAIService.class);
     Mockito.when(ia.generarPublicidad(any(), any()))
            .thenThrow(new RuntimeException("429 Too Many Requests"));
-    PublicidadService service = new PublicidadService(ia);
+    PublicidadService ec.edu.espe.agrosmart.service = new PublicidadService(ia);
 
     // Act & Assert
-    StepVerifier.create(service.generarPublicidad("Cacao", "exportadores"))
+    StepVerifier.create(ec.edu.espe.agrosmart.service.generarPublicidad("Cacao", "exportadores"))
             .expectNextMatches(texto -> texto.contains("no disponible"))
             .verifyComplete();
 }
@@ -1164,7 +1164,7 @@ JUnit 4 aparte). Si vienes de JUnit 4:
 
 | Operador | Qué hace | Dónde lo usas aquí |
 |----------|----------|--------------------|
-| `Mono.fromCallable(fn)` | Difiere una llamada bloqueante hasta la suscripción | Envolver `repository.findAll()` y la llamada a la IA |
+| `Mono.fromCallable(fn)` | Difiere una llamada bloqueante hasta la suscripción | Envolver `ec.edu.espe.agrosmart.repository.findAll()` y la llamada a la IA |
 | `.subscribeOn(Schedulers.boundedElastic())` | Ejecuta la cadena en un pool elástico, fuera del event loop | Todo acceso a JPA y a la IA |
 | `.flatMapMany(Flux::fromIterable)` | Convierte un `Mono<List<T>>` en `Flux<T>` | Tras traer la lista del repositorio |
 | `.map(fn)` | Transforma cada elemento (1→1) | Entidad → dominio; nombre a mayúsculas |
@@ -1210,10 +1210,10 @@ puntos si lo resuelves**: tienes hasta el día siguiente.
 | `Connection refused: localhost:5432` | PostgreSQL no está corriendo | macOS: `brew services start postgresql` · Windows: iniciar el servicio *postgresql* · Linux: `sudo systemctl start postgresql` |
 | La app arranca en el **8080** y no en tu puerto | El perfil `prod` no se activó | Verifica `spring.profiles.active=prod` en `application.properties` y que el archivo se llame **exactamente** `application-prod.properties` |
 | `Table "tbl_productos_base_NN" not found` | Dejaste el literal `NN` | Reemplaza `NN` por **tus** dos dígitos en `@Table(name = ...)` |
-| `duplicate key value violates unique constraint` | La siembra corre en cada arranque | Envuélvela en `if (repository.count() == 0) { ... }` |
+| `duplicate key value violates unique constraint` | La siembra corre en cada arranque | Envuélvela en `if (ec.edu.espe.agrosmart.repository.count() == 0) { ... }` |
 | `Port 81XX is already in use` | Otra instancia sigue viva | Mátala: `lsof -ti:81XX \| xargs kill -9` (macOS/Linux) |
 | `No qualifying bean of type ...ChatModel` | Falta `langchain4j-open-ai-spring-boot-starter` o las properties | Revisa que estén **ambos** starters y las líneas `langchain4j.open-ai.chat-model.*` |
-| `cannot find symbol: AiService` | Import equivocado | Es `dev.langchain4j.service.spring.AiService`, no el de `dev.langchain4j.service` |
+| `cannot find symbol: AiService` | Import equivocado | Es `dev.langchain4j.ec.edu.espe.agrosmart.service.spring.AiService`, no el de `dev.langchain4j.ec.edu.espe.agrosmart.service` |
 | `Cannot connect to the Docker daemon` | Docker Desktop apagado | Ábrelo y espera a que diga *running*, o pásate a la Opción B (PostgreSQL local) |
 | Docker Compose no levanta y la app falla | `compose.yaml` mal ubicado | Debe estar en la **raíz** del proyecto, junto a `pom.xml`/`build.gradle` |
 | Las pruebas fallan por conexión a PostgreSQL | No mockeaste el repositorio | Las pruebas **no deben** tocar la base: usa `Mockito.mock(ProductoRepository.class)` |
