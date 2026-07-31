@@ -180,9 +180,14 @@ return new Producto(p.getId(), p.getNombre().toUpperCase(), p.getPrecio(), p.get
 
 **4.1** Pega tu método `obtenerProductosComercializables()` completo.
 
-```java
+obtenerProductosComercializables()
 
-```
+public Flux<Producto> obtenerProductosComercializables() {
+    return Flux.defer(() -> Flux.fromIterable(productoRepository.findAll()))
+            .map(productoMapper::toDomain)
+            .filter(p -> p.getPrecio().compareTo(BigDecimal.ZERO) > 0)
+            .subscribeOn(Schedulers.boundedElastic());
+}
 
 **4.2** ¿Qué pasa **exactamente** si eliminas
 `.subscribeOn(Schedulers.boundedElastic())` de ese método? Si lo probaste, indica qué
