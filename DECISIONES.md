@@ -65,6 +65,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+```java
 @Entity
 @Table(name = "tbl_productos_base_00")
 public class ProductoEntity {
@@ -100,6 +101,7 @@ public class ProductoEntity {
     // Constructor vacío requerido por Hibernate
     public ProductoEntity() {
     }
+```
 
 **2.2** Pega la salida de `psql -d agrosmart_db -c "\d tbl_productos_base_NN"` y
 señala dónde se ve la restricción `unique` y el `length` de 120.
