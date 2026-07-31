@@ -141,7 +141,10 @@ lo fuera? (piensa en la restricción `unique` de `nombre_producto`)
 **3.1** ¿Por qué tienes **dos** clases (`ProductoEntity` y `Producto`) en lugar de una?
 ¿Qué te impide hacer inmutable directamente la entidad de Hibernate?
 
+>Se separan para aplicar arquitectura limpia y separación de responsabilidades (como se observa en la estructura del proyecto). `ProductoEntity` requiere propiedades mutables y constructor vacío para que JPA/Hibernate pueda hidratarla desde la base de datos. En cambio, `Producto` es un modelo de dominio puro e inmutable, desacoplado de la persistencia.
 >
+<img width="512" height="408" alt="u" src="https://github.com/user-attachments/assets/fa6f98a1-98b7-4262-b968-5023bb31fbdd" />
+
 
 **3.2** Escribe el código exacto de **tus dos** copias defensivas e indica en qué línea
 está cada una.
