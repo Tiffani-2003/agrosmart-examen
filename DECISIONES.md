@@ -59,8 +59,7 @@ Se eligió Docker para garantizar portabilidad y aislamiento del entorno, permit
 >El nombre exacto de la tabla es tbl_productos_base_00. Surgió de combinar la estructura base requerida (tbl_productos_base_) con los dos dígitos correspondientes, tal como se define en la anotación @Table(name = "tbl_productos_base_00") dentro de la clase ProductoEntity.java.
 
 
-<img width="1292" height="768" alt="yu" src="https://github.com/user-attachments/assets/52d3c397-d6fb-4ca6-b476-0e90f25992ac" />
-
+![Evidencia ProductoEntity](https://github.com/user-attachments/assets/52d3c397-d6fb-4ca6-b476-0e90f25992ac)
 
 
 **2.2** Pega la salida de `psql -d agrosmart_db -c "\d tbl_productos_base_NN"` y
