@@ -51,9 +51,9 @@ se busca en una tabla.
 > haberlo entregado y C8 se califica en nivel 1.
 
 - **Enlace al video (5 min, cámara + pantalla):**
-- **Plataforma:**                  <!-- Drive institucional / OneDrive / YouTube no listado -->
+- **Plataforma:**  https://drive.google.com/file/d/1ci40Pr0gYh8VkMUtL2mWyKQ_su7bhoWt/view?usp=sharing (UTILIZAMOS DRIVE) <!-- Drive institucional / OneDrive / YouTube no listado -->
 - **Acceso verificado en incógnito:**   ☐ Sí
-- **Duración real:**
+- **Duración real: 13:33 MINUTOS**
 
 ---
 
@@ -63,4 +63,4 @@ Declaro que este repositorio es de mi autoría individual, que sustentaré oralm
 decisión de diseño que contiene, y que el historial de commits refleja fielmente el
 proceso de desarrollo que realicé.
 
-**Firma (nombre completo):**
+**Firma (nombre completo): Tiffani Nathalia Torres Diaz **
