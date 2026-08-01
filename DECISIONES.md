@@ -258,7 +258,10 @@ parámetro?
 **5.3** ¿En qué archivo y con qué líneas configuraste el modelo? ¿Por qué **no** hizo
 falta declarar un `@Bean`?
 
->
+No fue necesario declararlo manualmente porque el *starter* de LangChain4j para Spring Boot autoconfigura e instancia el modelo de chat automáticamente leyendo estas propiedades de forma declarativa.
+
+`<img width="1286" height="645" alt="15x" src="https://github.com/user-attachments/assets/9cb72e35-d040-4d37-a129-36c3a2fc2dd0" />
+
 
 **5.4** ¿Por qué la llamada a la IA también necesita `boundedElastic`, si no es una
 consulta a base de datos?
