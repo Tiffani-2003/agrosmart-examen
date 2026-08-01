@@ -315,22 +315,22 @@ Se ejecutaron un total de 4 pruebas unitarias correspondientes a los componentes
 **7.2** ¿Cuántos productos espera tu `expectNextCount(...)` y por qué ese número
 concreto? Relaciónalo con tu semilla.
 
->
+>Esperamos exactamente la cantidad de productos comerciales filtrados definidos en la lógica de la prueba unitaria (por ejemplo, 1 o los que cumplan con la condición de precio > 0 de acuerdo con el mock configurado para tu semilla 00).
 
 **7.3** ¿Por qué mockeaste `ProductoRepository` en lugar de dejar que la prueba consulte
 PostgreSQL?
 
->
+>Para aislar la prueba unitaria del servicio, evitando dependencias externas de infraestructura (como contenedores o bases de datos vivas), logrando que la ejecución sea rápida, determinista y enfocada exclusivamente en la lógica de negocio del servicio.
 
 **7.4** ¿Qué demuestra `assertNotSame` que `assertEquals` **no** demuestra en tu prueba
 de copia defensiva?
 
->
+> assertEquals valida que los valores o contenidos lógicos de los objetos sean iguales, mientras que assertNotSame valida estrictamente que no apunten a la misma referencia de memoria, demostrando fehacientemente que se creó un objeto completamente nuevo e independiente (copia defensiva).
 
 **7.5** ¿Por qué una prueba de un `Flux` que no llama a `verifyComplete()` (o a
 `verify()`) no está probando nada?
 
->
+> Porque en Project Reactor los flujos son perezosos (lazy); si no se adjunta un suscriptor o un StepVerifier con su respectivo método .verify(), el flujo nunca llega a ejecutarse y por lo tanto ninguna aserción dentro de la prueba llega a evaluarse.
 
 ---
 
