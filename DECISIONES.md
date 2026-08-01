@@ -307,9 +307,10 @@ respuesta que produjo tu `onErrorResume`.
 
 **7.1** Pega la salida real de tus pruebas (`./mvnw test` o `./gradlew test`).
 
-```
+Se ejecutaron un total de 4 pruebas unitarias correspondientes a los componentes del dominio y servicios (`ProductoTest` y `ProductoServiceTest`). Todas finalizaron de manera exitosa sin registrar fallos, errores ni pruebas omitidas, obteniendo un estado de `BUILD SUCCESS`.
 
-```
+``<img width="1290" height="768" alt="21x" src="https://github.com/user-attachments/assets/acb5f797-6a73-4032-8ce1-fd926c6761ef" />
+
 
 **7.2** ¿Cuántos productos espera tu `expectNextCount(...)` y por qué ese número
 concreto? Relaciónalo con tu semilla.
