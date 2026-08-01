@@ -283,9 +283,14 @@ respuesta que produjo tu `onErrorResume`.
 
 **6.1** Pega la salida real de tus cuatro `curl`.
 
-```
+``<img width="1252" height="489" alt="17 x" src="https://github.com/user-attachments/assets/bbadafba-2907-4d82-b234-d726116bf5d9" />
 
-```
+``<img width="1293" height="462" alt="18x" src="https://github.com/user-attachments/assets/d49447c4-4526-4dd4-a8ca-ebdf722d2fcd" />
+
+``<img width="1191" height="162" alt="19x" src="https://github.com/user-attachments/assets/3fd44b17-0236-4473-83d3-55a69debf821" />
+
+`` <img width="1293" height="552" alt="20x" src="https://github.com/user-attachments/assets/a1ff3a67-1727-4668-b9a5-0c32cd7d4986" />
+
 
 **6.2** ¿Cómo lograste que el id inexistente responda **404** y no 500?
 
