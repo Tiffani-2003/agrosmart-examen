@@ -266,7 +266,7 @@ No fue necesario declararlo manualmente porque el *starter* de LangChain4j para 
 **5.4** ¿Por qué la llamada a la IA también necesita `boundedElastic`, si no es una
 consulta a base de datos?
 
->
+> Porque los SDKs subyacentes o clientes HTTP utilizados para comunicarse con el proveedor de IA realizan llamadas bloqueantes de red (I/O bloqueante). Envolverlo en `boundedElastic` protege el hilo reactivo no bloqueante de Netty de quedarse esperando la respuesta de la API externa.
 
 **5.5** Si tu proveedor devolvió un error durante el examen, pega el mensaje real y la
 respuesta que produjo tu `onErrorResume`.
