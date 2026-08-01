@@ -338,9 +338,14 @@ de copia defensiva?
 
 **8.1** Pega tu `git log --oneline --graph --all`.
 
-```
+``<img width="1292" height="641" alt="23x" src="https://github.com/user-attachments/assets/ab388530-aa63-4816-a0aa-80fb665b8c9c" />
 
-```
+``<img width="1283" height="247" alt="24x" src="https://github.com/user-attachments/assets/e4e96499-2273-4c33-bb10-91f5e7e7c3b9" />
+
+``<img width="1285" height="537" alt="25x" src="https://github.com/user-attachments/assets/b40dae00-015a-4289-9e5f-99da4ebd26fe" />
+
+``<img width="1300" height="651" alt="45x" src="https://github.com/user-attachments/assets/0e13faaa-2588-499c-a4e0-9c2ffdff541d" />
+
 
 **8.2** ¿Qué fase te tomó más tiempo del previsto y por qué?
 
