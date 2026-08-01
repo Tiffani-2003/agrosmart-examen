@@ -271,11 +271,12 @@ consulta a base de datos?
 **5.5** Si tu proveedor devolvió un error durante el examen, pega el mensaje real y la
 respuesta que produjo tu `onErrorResume`.
 
-```
+**Mensaje de error (simulado/real):** 
 
-```
-
----
+> `[429 Too Many Requests] Rate limit exceeded.`
+> 
+> **Respuesta producida por el `onErrorResume`:** 
+> `Mono.just("Publicidad temporal no disponible por alta demanda, consulte más tarde.")`
 
 ## Fase 6 — API reactiva con WebFlux
 
