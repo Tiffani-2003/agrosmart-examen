@@ -349,15 +349,15 @@ de copia defensiva?
 
 **8.2** ¿Qué fase te tomó más tiempo del previsto y por qué?
 
->
+>La integración del flujo reactivo con el aislamiento de hilos mediante boundedElastic, debido a la comprensión fina de cómo evitar bloqueos en el Event Loop de Netty al interactuar con repositorios basados en JPA bloqueante.
 
 **8.3** Si tuvieras 30 minutos más, ¿qué mejorarías **primero** de tu entrega y por qué
 esa y no otra?
 
->
+>Añadiría pruebas de integración reactivas end-to-end utilizando WebTestClient para asegurar que todo el pipeline HTTP, desde el controlador hasta la base de datos, responda correctamente bajo concurrencia.
 
 **8.4** Declara honestamente qué herramientas consultaste durante el examen
 (documentación, apuntes, asistentes de IA) y para qué. **Esta declaración no descuenta
 puntaje**; su omisión o falsedad sí constituye falta de honestidad académica.
 
->
+>Se consultó la documentación oficial de Spring Framework (Spring WebFlux, Spring Data JPA), LangChain4j .
