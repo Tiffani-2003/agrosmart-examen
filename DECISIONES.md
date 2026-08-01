@@ -294,12 +294,12 @@ respuesta que produjo tu `onErrorResume`.
 
 **6.2** ¿Cómo lograste que el id inexistente responda **404** y no 500?
 
->
+>Mapeando el resultado vacío o la excepción de negocio personalizada (ProductoNoEncontradoException) mediante el operador reactivo .switchIfEmpty(Mono.error(new ProductoNoEncontradoException(...))) y gestionándolo con un @RestControllerAdvice anotado con @ResponseStatus(HttpStatus.NOT_FOUND).
 
 **6.3** ¿Qué pasaría si tu controlador devolviera `List<Producto>` en lugar de
 `Flux<Producto>`? ¿Seguiría compilando? ¿Seguiría siendo no bloqueante?
 
->
+> Dependiendo de cómo se obtenga el resultado, si se devuelve una colección bloqueante directa rompería la naturaleza reactiva de WebFlux y podría forzar un bloqueo en el hilo de atención. Lo correcto en Spring WebFlux para endpoints reactivos es retornar Mono<T> o Flux<T>.
 
 ---
 
